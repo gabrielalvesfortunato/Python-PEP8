@@ -1,8 +1,27 @@
-class BaseQueue:
+import abc
+
+
+class BaseQueue(metaclass=abc.ABCMeta):
     current_password: str = ""
     served_customers: list = []
     code: int = 0
     queue: list = []
+
+    @abc.abstractmethod
+    def generate_current_password(self) -> None:
+        ...
+
+    @abc.abstractmethod
+    def attend_customer(self, cashier: int) -> str:
+        ...
+
+    def refresh_queue(self) -> None:
+        self.reset_queue()
+        self.generate_current_password()
+        self.insert_customer()
+
+    def insert_customer(self):
+        self.queue.append(self.current_password)
 
     def reset_queue(self) -> None:
         if self.code >= 200:
