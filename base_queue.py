@@ -1,5 +1,7 @@
 import abc
 
+from constantes import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE
+
 
 class BaseQueue(metaclass=abc.ABCMeta):
     current_password: str = ""
@@ -24,8 +26,8 @@ class BaseQueue(metaclass=abc.ABCMeta):
         self.queue.append(self.current_password)
 
     def reset_queue(self) -> None:
-        if self.code >= 200:
-            self.code = 0
+        if self.code >= MAX_STANDARD_SIZE:
+            self.code = MIN_STANDARD_SIZE
         else:
             self.code += 1
 

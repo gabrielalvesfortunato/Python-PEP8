@@ -1,9 +1,10 @@
 from base_queue import BaseQueue
+from constantes import NORMAL_CODE
 
 
 class NormalQueue(BaseQueue):
     def generate_current_password(self) -> None:
-        self.current_password = f'NRM{self.code}'
+        self.current_password = f'{NORMAL_CODE}{self.code}'
 
     def attend_customer(self, cashier: int) -> str:
         current_customer: str = self.queue.pop(0)
