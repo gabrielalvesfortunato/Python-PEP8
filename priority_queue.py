@@ -13,4 +13,5 @@ class PriorityQueue(BaseQueue):
     def attend_customer(self, cashier: int) -> str:
         current_customer: str = self.queue.pop(0)
         self.served_customers.append(current_customer)
-        return f'Current customer: {current_customer}, go to the cashier: {cashier}'
+        return f'Current customer: {current_customer}, ' \
+               f'go to the cashier: {cashier}'
