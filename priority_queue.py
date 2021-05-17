@@ -1,10 +1,10 @@
 from base_queue import BaseQueue
-from constantes import PRIORITY_CODE
+from constantes import PRIORITY_QUEUE_CODE
 
 
 class PriorityQueue(BaseQueue):
     def generate_current_password(self) -> None:
-        self.current_password = f'{PRIORITY_CODE}{self.code}'
+        self.current_password = f'{PRIORITY_QUEUE_CODE}{self.code}'
 
     def attend_customer(self, cashier: int) -> str:
         current_customer: str = self.queue.pop(0)
