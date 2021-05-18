@@ -1,5 +1,5 @@
 from base_queue import BaseQueue
-from constantes import PRIORITY_QUEUE_CODE
+from constants import PRIORITY_QUEUE_CODE
 
 
 class PriorityQueue(BaseQueue):

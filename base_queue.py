@@ -1,13 +1,14 @@
 import abc
+from typing import List, Dict, Union
 
-from constantes import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE
+from constants import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE
 
 
 class BaseQueue(metaclass=abc.ABCMeta):
     current_password: str = ""
-    served_customers: list = []
+    served_customers: List[str] = []
     code: int = 0
-    queue: list = []
+    queue: List[str] = []
 
     @abc.abstractmethod
     def generate_current_password(self) -> None:
@@ -32,8 +33,9 @@ class BaseQueue(metaclass=abc.ABCMeta):
             self.code += 1
 
     def statistics(self, day: str, agency: int, flag: str = None) -> dict:
+        statistic: Dict[str, Union[List[str], str, int]] = {}
         if flag != "detail":
-            statistic = {f'{agency}-{day}': len(self.served_customers)}
+            statistic[f'{agency}-{day}'] = len(self.served_customers)
         else:
             statistic = {
                 "day": day,
