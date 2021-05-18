@@ -6,5 +6,3 @@ MIN_STANDARD_SIZE = 0
 
 NORMAL_QUEUE_TYPE = "normal"
 PRIORITY_QUEUE_TYPE = "priority"
-
-DETAILED_SUMMARY = "detail"

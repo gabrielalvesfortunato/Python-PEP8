@@ -1,28 +1,13 @@
-# from normal_queue import NormalQueue
-# from priority_queue import PriorityQueue
 from queue_factory import QueueFactory
+from detailed_summary import DetailedSummary
+from resumed_summary import ResumedSummary
 
-# test_queue = NormalQueue()
-# test_queue.refresh_queue()
-# test_queue.refresh_queue()
-# print(test_queue.attend_customer(5))
-# print(test_queue.attend_customer(10))
-#
-# print("\n|------------------------------------|\n")
-#
-# test_queue_2 = PriorityQueue()
-# test_queue_2.refresh_queue()
-# test_queue_2.refresh_queue()
-# test_queue_2.refresh_queue()
-# print(test_queue_2.attend_customer(10))
-# print(test_queue_2.attend_customer(1))
 
-print("\n|------------------------------------|\n")
+queue = QueueFactory.choose_queue("priority")
+queue.refresh_queue()
+print(queue.attend_customer(10))
+queue.refresh_queue()
+print(queue.attend_customer(5))
 
-test_factory = QueueFactory.choose_queue("normal")
-test_factory.refresh_queue()
-test_factory.refresh_queue()
-test_factory.refresh_queue()
-print(test_factory.attend_customer(10))
-
-print("\n|------------------------------------|\n")
+print(queue.summary(DetailedSummary("20/03/2022", 201)))
+print(queue.summary(ResumedSummary("20/03/2022", 201)))

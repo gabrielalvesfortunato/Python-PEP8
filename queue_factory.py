@@ -11,7 +11,7 @@ class QueueFactory:
     def choose_queue(queue_type) -> Union[NormalQueue, PriorityQueue]:
         if queue_type == NORMAL_QUEUE_TYPE:
             return NormalQueue()
-        elif queue_type == PRIORITY_QUEUE_TYPE:
+        if queue_type == PRIORITY_QUEUE_TYPE:
             return PriorityQueue()
         else:
             raise NotImplementedError("Queue type doesn't exist.")

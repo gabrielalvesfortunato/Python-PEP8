@@ -1,14 +1,20 @@
 import abc
-from typing import List, Dict, Union
+from typing import List, Union
 
-from constants import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE, DETAILED_SUMMARY
+from constants import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE
+from detailed_summary import DetailedSummary
+from resumed_summary import ResumedSummary
+
+Classes = Union[DetailedSummary, ResumedSummary]
 
 
 class BaseQueue(metaclass=abc.ABCMeta):
-    current_password: str = ""
-    served_customers: List[str] = []
-    code: int = 0
-    queue: List[str] = []
+
+    def __init__(self):
+        self.current_password: str = ""
+        self.served_customers: List[str] = []
+        self.code: int = 0
+        self.queue: List[str] = []
 
     @abc.abstractmethod
     def generate_current_password(self) -> None:
@@ -32,16 +38,5 @@ class BaseQueue(metaclass=abc.ABCMeta):
         else:
             self.code += 1
 
-    def summary(self, day: str, agency: int, flag: str = None) -> dict:
-        summary: Dict[str, Union[List[str], str, int]] = {}
-        if flag != DETAILED_SUMMARY:
-            summary[f'{agency}-{day}'] = len(self.served_customers)
-        else:
-            summary = {
-                "day": day,
-                "agency": agency,
-                "served customers": self.served_customers,
-                "number of served customers": len(self.served_customers)
-            }
-
-        return summary
+    def summary(self, summary: Classes) -> dict:
+        return summary.make_summary(self.served_customers)
