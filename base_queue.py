@@ -1,7 +1,7 @@
 import abc
 from typing import List, Dict, Union
 
-from constants import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE
+from constants import MAX_STANDARD_SIZE, MIN_STANDARD_SIZE, DETAILED_SUMMARY
 
 
 class BaseQueue(metaclass=abc.ABCMeta):
@@ -32,16 +32,16 @@ class BaseQueue(metaclass=abc.ABCMeta):
         else:
             self.code += 1
 
-    def statistics(self, day: str, agency: int, flag: str = None) -> dict:
-        statistic: Dict[str, Union[List[str], str, int]] = {}
-        if flag != "detail":
-            statistic[f'{agency}-{day}'] = len(self.served_customers)
+    def summary(self, day: str, agency: int, flag: str = None) -> dict:
+        summary: Dict[str, Union[List[str], str, int]] = {}
+        if flag != DETAILED_SUMMARY:
+            summary[f'{agency}-{day}'] = len(self.served_customers)
         else:
-            statistic = {
+            summary = {
                 "day": day,
                 "agency": agency,
                 "served customers": self.served_customers,
                 "number of served customers": len(self.served_customers)
             }
 
-        return statistic
+        return summary
